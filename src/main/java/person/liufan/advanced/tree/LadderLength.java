@@ -15,45 +15,43 @@ public class LadderLength {
     }
 
     /**
-     * 保存单词id
+     * 节点Id
      */
-    Map<String, Integer> wordId = new HashMap<>();
+    Map<String,Integer> map = new HashMap<>();
     /**
-     * 路径
+     * 搜索路径
      */
-    List<List<Integer>> edge = new ArrayList<>();
+    List<List<Integer>> path = new ArrayList<>();
     /**
      * 节点数量
      */
     int nodeNum = 0;
-
-    /**
-     * 图，没用过
-     */
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        for (String word : wordList) {
-            addEdge(word);
+        for (String str : wordList) {
+            addEdge(str);
         }
         addEdge(beginWord);
-        if (!wordId.containsKey(endWord)) {
+        if (!map.containsKey(endWord)) {
             return 0;
         }
+        addEdge(endWord);
+        Queue<Integer> queue = new LinkedList<>();
         int[] dis = new int[nodeNum];
-        Arrays.fill(dis, Integer.MAX_VALUE);
-        int beginId = wordId.get(beginWord), endId = wordId.get(endWord);
+        Arrays.fill(dis,Integer.MAX_VALUE);
+        Integer beginId = map.get(beginWord);
+        Integer endId = map.get(endWord);
         dis[beginId] = 0;
-
-        Queue<Integer> que = new LinkedList<>();
-        que.offer(beginId);
-        while (!que.isEmpty()) {
-            int x = que.poll();
-            if (x == endId) {
-                return dis[endId] / 2 + 1;
+        queue.offer(beginId);
+        while (!queue.isEmpty()) {
+            Integer currentId = queue.poll();
+            if (currentId.equals(endId)) {
+                return dis[currentId] / 2 + 1;
             }
-            for (int it : edge.get(x)) {
-                if (dis[it] == Integer.MAX_VALUE) {
-                    dis[it] = dis[x] + 1;
-                    que.offer(it);
+            List<Integer> currentPath = path.get(currentId);
+            for (Integer pathId : currentPath) {
+                if (dis[pathId] == Integer.MAX_VALUE) {
+                    dis[pathId] = dis[currentId] + 1;
+                    queue.offer(pathId);
                 }
             }
         }
@@ -61,32 +59,32 @@ public class LadderLength {
     }
 
     /**
-     * 建立字典
+     * 建立路径
      */
     public void addEdge(String word) {
         addWord(word);
-        int id1 = wordId.get(word);
-        char[] array = word.toCharArray();
-        int length = array.length;
-        for (int i = 0; i < length; ++i) {
-            char tmp = array[i];
-            array[i] = '*';
-            String newWord = new String(array);
-            addWord(newWord);
-            int id2 = wordId.get(newWord);
-            edge.get(id1).add(id2);
-            edge.get(id2).add(id1);
-            array[i] = tmp;
+        Integer wordId = map.get(word);
+        List<Integer> wordPath = path.get(wordId);
+        char[] chars = word.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+            chars[i] = '*';
+            String str = new String(chars);
+            addWord(str);
+            Integer strId = map.get(str);
+            wordPath.add(strId);
+            path.get(strId).add(wordId);
+            chars[i] = c;
         }
     }
 
     /**
-     * 建立字典
+     * 添加到节点Id中
      */
     public void addWord(String word) {
-        if (!wordId.containsKey(word)) {
-            wordId.put(word, nodeNum++);
-            edge.add(new ArrayList<>());
+        if (!map.containsKey(word)) {
+            map.put(word, nodeNum++);
+            path.add(new ArrayList<>());
         }
     }
 }
