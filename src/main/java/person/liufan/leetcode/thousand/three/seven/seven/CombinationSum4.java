@@ -1,4 +1,4 @@
-package person.liufan.leetcode.thousand.three.seven;
+package person.liufan.leetcode.thousand.three.seven.seven;
 
 /**
  * @author: liufan
