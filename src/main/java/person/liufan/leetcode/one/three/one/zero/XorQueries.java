@@ -40,9 +40,12 @@ public class XorQueries {
         System.out.println(Arrays.toString(xorQueries.xorQueries(arr, queries)));
     }
     public int[] xorQueries(int[] arr, int[][] queries) {
+        // 获取数组的前n项的异或值
         for (int i = 1; i < arr.length; i++) {
             arr[i] ^= arr[i - 1];
         }
+        // 前n项和前m项的异或值就是n-m区间的异或值
+        // 计算每一个查询的结果
         int[] ans = new int[queries.length];
         for (int i = 0; i < queries.length; i++) {
             int first = queries[i][0] == 0 ? 0 : arr[queries[i][0] - 1];
