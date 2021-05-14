@@ -1,4 +1,4 @@
-package person.liufan.leetcode.thousand.one.zero.six.seven;
+package person.liufan.leetcode.thousand.one.zero.seven;
 
 import person.liufan.common.TreeNode;
 import person.liufan.common.TreeUtils;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author: liufan
  * @E-mail: fan.liu@biz-united.com.cn
- * @package: person.liufan.leetcode.thousand.one.zero.six.seven
+ * @package: person.liufan.leetcode.thousand.one.zero.seven
  * @description: 给定一个二叉树，返回其节点值自底向上的层序遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
  * @date 2021/5/14
  */
