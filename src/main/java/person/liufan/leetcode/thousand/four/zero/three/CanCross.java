@@ -1,4 +1,4 @@
-package person.liufan.leetcode.thousand.fore.zero.three;
+package person.liufan.leetcode.thousand.four.zero.three;
 
 import java.util.ArrayList;
 import java.util.HashSet;
