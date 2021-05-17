@@ -23,17 +23,17 @@ public class Permutation {
     }
     public String[] permutation(String s) {
         List<String> ans = new ArrayList<>();
-        StringBuilder builder = new StringBuilder();
+        char[] builder = new char[s.length()];
         char[] chars = s.toCharArray();
         Arrays.sort(chars);
         boolean[] isUsed = new boolean[chars.length];
-        dfs(ans, builder, chars, isUsed);
+        dfs(ans, builder, chars, 0, isUsed);
         return ans.toArray(new String[ans.size()]);
     }
 
-    public void dfs(List<String> ans, StringBuilder builder, char[] chars, boolean[] isUsed) {
-        if (builder.length() == chars.length) {
-            ans.add(builder.toString());
+    public void dfs(List<String> ans, char[] builder, char[] chars,int size, boolean[] isUsed) {
+        if (size == chars.length) {
+            ans.add(String.valueOf(builder));
             return;
         }
         for (int i = 0; i < chars.length; i++) {
@@ -41,11 +41,10 @@ public class Permutation {
                 continue;
             }
             if (!isUsed[i]) {
-                builder.append(chars[i]);
+                builder[size] = chars[i];
                 isUsed[i] = true;
-                dfs(ans, builder, chars, isUsed);
+                dfs(ans, builder, chars, size + 1, isUsed);
                 isUsed[i] = false;
-                builder.deleteCharAt(builder.length() - 1);
             }
         }
     }
