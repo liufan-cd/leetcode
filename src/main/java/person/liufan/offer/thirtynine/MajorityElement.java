@@ -18,17 +18,10 @@ public class MajorityElement {
         System.out.println(majorityElement.majorityElement(new int[]{1, 2, 3, 2, 2, 2, 5, 4, 2}));
     }
     public int majorityElement(int[] nums) {
-        int ticket = 0;
-        int major = 0;
+        int ticket = 0, major = 0;
         for (int num : nums) {
-            if (ticket == 0) {
-                major = num;
-            }
-            if (major == num) {
-                ticket++;
-            } else {
-                ticket--;
-            }
+            major = ticket == 0 ? num : major;
+            ticket = major == num ? ticket + 1 : ticket - 1;
         }
         return major;
     }
