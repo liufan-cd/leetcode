@@ -1,5 +1,7 @@
 package person.liufan.common;
 
+import java.util.List;
+
 /**
  * @author: liufan
  * @E-mail: fan.liu@biz-united.com.cn
@@ -21,5 +23,32 @@ public class ArrayUtils {
         for (int t : array) {
             System.out.print(t + "\t\t");
         }
+    }
+
+    public static int[][] parseTwoArray(String string, int col, int row) {
+        String[] split = string.split("]");
+        int[][] ans = new int[col][row];
+        for (int i = 0; i < ans.length; i++) {
+            int[] an = ans[i];
+            char[] chars = split[i].toCharArray();
+            int k = 0;
+            for (int j = 0; j < an.length; j++) {
+                int num = 0;
+                while (k < chars.length) {
+                    if (Character.isDigit(chars[k])) {
+                        num = num * 10 + chars[k] - '0';
+                        k++;
+                    } else {
+                        if (num != 0) {
+                            break;
+                        } else {
+                            k++;
+                        }
+                    }
+                }
+                an[j] = num;
+            }
+        }
+        return ans;
     }
 }
