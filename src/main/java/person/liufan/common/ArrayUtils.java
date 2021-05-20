@@ -1,6 +1,8 @@
 package person.liufan.common;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author: liufan
@@ -25,30 +27,42 @@ public class ArrayUtils {
         }
     }
 
-    public static int[][] parseTwoArray(String string, int col, int row) {
+    public static int[][] parseTwoArray(String string) {
         String[] split = string.split("]");
-        int[][] ans = new int[col][row];
-        for (int i = 0; i < ans.length; i++) {
-            int[] an = ans[i];
-            char[] chars = split[i].toCharArray();
+        List<List<Integer>> temp = new ArrayList<>();
+        for (String s : split) {
+            char[] chars = s.toCharArray();
             int k = 0;
-            for (int j = 0; j < an.length; j++) {
-                int num = 0;
+            List<Integer> integers = new ArrayList<>();
+            for (int j = 0; j < chars.length; j++) {
+                Integer num = null;
                 while (k < chars.length) {
                     if (Character.isDigit(chars[k])) {
+                        if (num == null) {
+                            num = 0;
+                        }
                         num = num * 10 + chars[k] - '0';
                         k++;
                     } else {
-                        if (num != 0) {
+                        if (num != null) {
                             break;
                         } else {
                             k++;
                         }
                     }
                 }
-                an[j] = num;
+                if (num != null) {
+                    integers.add(num);
+                }
             }
+            temp.add(integers);
         }
-        return ans;
+        return temp.stream()
+                .map(integers -> integers.stream()
+                        .mapToInt(e -> e)
+                        .toArray()
+                )
+                .collect(Collectors.toList())
+                .toArray(new int[0][0]);
     }
 }
