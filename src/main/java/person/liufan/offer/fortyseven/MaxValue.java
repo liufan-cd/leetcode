@@ -19,9 +19,9 @@ import java.util.Arrays;
 public class MaxValue {
     public static void main(String[] args) {
         MaxValue maxValue = new MaxValue();
-        int[][] ints = ArrayUtils.parseTwoArray("[1,3,1]," +
+        int[][] ints = ArrayUtils.parseTwoArray("[1,3,1],asdfaf" +
                 "  [1,5,1]," +
-                "  [4,2,1]", 3, 3);
+                "  [4,2,1]");
         System.out.println(Arrays.deepToString(ints));
         System.out.println(maxValue.maxValue(ints));
     }
