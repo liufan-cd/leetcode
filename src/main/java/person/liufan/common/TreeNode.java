@@ -38,11 +38,12 @@ public class TreeNode {
         }
     }
 
-    public void printTree() {
+    public TreeNode printTree() {
         getMaxDeep();
         for (int i = 1; i <= maxDeep; i++) {
             printOneLayer(i);
         }
+        return this;
     }
 
     private void printOneLayer(int n) {
