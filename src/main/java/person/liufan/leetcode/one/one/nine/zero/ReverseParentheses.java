@@ -33,7 +33,6 @@ public class ReverseParentheses {
         Deque<Integer> stack = new LinkedList<>();
         char[] chars = s.toCharArray();
         int[] match = new int[s.length()];
-        Arrays.fill(match, -1);
         for (int i = 0; i < chars.length; i++) {
             char aChar = chars[i];
             if (aChar == '(') {
@@ -50,7 +49,7 @@ public class ReverseParentheses {
 
     public String reverseParentheses(String s, int[] match, int left, int right, boolean isReverse) {
         for (int i = left; i <= right; i++) {
-            if (match[i] != -1) {
+            if (match[i] != 0) {
                 if (isReverse) {
                     return reverseParentheses(s, match, match[i] + 1, right, true) +
                             reverseParentheses(s, match, i + 1, match[i] - 1, false)
