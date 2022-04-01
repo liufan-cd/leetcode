@@ -10,7 +10,7 @@ package person.liufan.middle.math;
 public class TrailingZeroes {
     public static void main(String[] args) {
         TrailingZeroes trailingZeroes = new TrailingZeroes();
-        System.out.println(trailingZeroes.trailingZeroes(3));
+        System.out.println(trailingZeroes.trailingZeroes(Integer.MAX_VALUE));
     }
     public int trailingZeroes(int n) {
         int size = 0;
