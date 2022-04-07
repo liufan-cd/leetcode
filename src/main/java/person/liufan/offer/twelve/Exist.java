@@ -26,7 +26,7 @@ public class Exist {
      * @return
      */
     public boolean exist(char[][] board, String word) {
-        person.liufan.leetcode.thousand.hundred.seventh.ninth.Exist exist = new person.liufan.leetcode.thousand.hundred.seventh.ninth.Exist();
+        person.liufan.leetcode.zero.zero.seven.ninth.Exist exist = new person.liufan.leetcode.zero.zero.seven.ninth.Exist();
         return exist.exist(board, word);
     }
 }
